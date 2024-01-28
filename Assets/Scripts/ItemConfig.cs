@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item 
 {
     public string itemName;
-    //public Sprite itemImage;
+    public Sprite itemImage;
     public GameObject itemPrefab;
     public int maxCapacity;
 

@@ -3,26 +3,31 @@
       {
         "itemName": "Bucket",
         "itemPrefab": "Bucket",
+        "itemImage":"bucket",
         "maxCapacity": 5
       },
       {
         "itemName": "Bulb",
         "itemPrefab": "Bulb",
+        "itemImage":"bulb",
         "maxCapacity": 3
       },
       {
         "itemName": "Lighter",
-        "itemPrefab": "Prefabs/Lighter",
+        "itemPrefab": "Lighter",
+        "itemImage":"lighter",
         "maxCapacity": 3
       },
       {
         "itemName": "Mglass",
-        "itemPrefab": "Prefabs/Mglass",
+        "itemPrefab": "Mglass",
+        "itemImage":"mglass",
         "maxCapacity": 3
       },
       {
         "itemName": "Wrench",
-        "itemPrefab": "Prefabs/Wrench",
+        "itemPrefab": "Wrench",
+        "itemImage":"wrench",
         "maxCapacity": 3
       }
       
