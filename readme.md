@@ -10,3 +10,6 @@ scene.
 3. Create a small UI to show the item name and amount in the inventory. It
 should update whenever an item changes.
 
+
+Recording 
+<video src='Assets\Recording 2024-01-29 221936.mp4' width=180/>
