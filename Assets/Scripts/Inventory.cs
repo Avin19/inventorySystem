@@ -9,7 +9,7 @@ using Unity.VisualScripting;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI inventoryText;
-    [SerializeField] private Button spawnButton, addButton;
+
     [SerializeField] private Transform layoutObject;
     [SerializeField] private Transform centerofCanvas;
     [SerializeField] private GameObject itemPrefab;
@@ -19,14 +19,13 @@ public class Inventory : MonoBehaviour
 
     private Dictionary<string, int> itemAmounts = new Dictionary<string, int>();
     private ItemConfig itemConfig;
+    private string lastClickItem = " Bucket";
    
 
     private void Start()
     {
         
-        
-        // spawnButton.onClick.AddListener(() => SpawnItem("Bulb"));
-        addButton.onClick.AddListener(() => AddItem("Bulb"));
+
         string json = Resources.Load<TextAsset>("ItemConfig").text;
         itemConfig = JsonUtility.FromJson<ItemConfig>(json);
         //Debug.Log(json);
@@ -50,7 +49,7 @@ public class Inventory : MonoBehaviour
         UpdateInventoryUI();
        if(Input.GetKeyDown(KeyCode.Space))
        {
-        SpawnItem("Bulb");
+        SpawnItem(lastClickItem);
        }
     }
 
@@ -76,6 +75,7 @@ public class Inventory : MonoBehaviour
                 
                 itemAmounts[itemName]++;
                 layoutObject.Find(itemName).Find("capcity").GetComponent<TextMeshProUGUI>().text = itemAmounts[itemName].ToString();
+                lastClickItem = itemName;
 
             }
         }

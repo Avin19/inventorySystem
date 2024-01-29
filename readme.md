@@ -10,7 +10,3 @@ scene.
 3. Create a small UI to show the item name and amount in the inventory. It
 should update whenever an item changes.
 
-
-## Approaches 
-### 1. Using Json -> Json Scence 
-### 2. Using Scriptable Object - > SO Scence

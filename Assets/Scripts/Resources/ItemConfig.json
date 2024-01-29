@@ -25,9 +25,9 @@
         "maxCapacity": 3
       },
       {
-        "itemName": "Wrench",
-        "itemPrefab": "Wrench",
-        "itemImage":"wrench",
+        "itemName": "Wench",
+        "itemPrefab": "Wench",
+        "itemImage":"wench",
         "maxCapacity": 3
       }
       
