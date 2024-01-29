@@ -12,4 +12,7 @@ should update whenever an item changes.
 
 
 Recording 
-<video src='\Assets\Recording 2024-01-29 221936.mp4' width=180/>
+
+
+https://github.com/Avin19/inventorySystem/assets/61896639/2dbc231d-7b60-4e9f-a6c3-4f99f054cce2
+
