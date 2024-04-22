@@ -1,8 +1,6 @@
 # Inventory and Shop
-
-
-    You have to create an Inventory and Shop Game mechanic as follows:
-    The Game Screen will be divided into 2 different UI Panels as shown below, each with a Grid UI: 900px
+You have to create an Inventory and Shop Game mechanic as follows:
+The Game Screen will be divided into 2 different UI Panels as shown below, each with a Grid UI: 900px
 
 
 - [ ] One Panel represents Shop and the other represents Player Inventory
