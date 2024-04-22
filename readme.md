@@ -1,18 +1,32 @@
-# Problem statement :
-## Create an inventory system.
-### Features:
-1. Store items in the inventory. The item’s model/prefab and maximum capacity
-that this item should be allowed in inventory must stored in a configuration
-file.
-2. Get the item from the inventory whenever required in the scene using any
-button click. Eg. using the “space” button. The object should spawn in the
-scene.
-3. Create a small UI to show the item name and amount in the inventory. It
-should update whenever an item changes.
+# Inventory and Shop
 
 
-Recording 
+    You have to create an Inventory and Shop Game mechanic as follows:
+    The Game Screen will be divided into 2 different UI Panels as shown below, each with a Grid UI: 900px
 
 
-https://github.com/Avin19/inventorySystem/assets/61896639/2dbc231d-7b60-4e9f-a6c3-4f99f054cce2
+- [ ] One Panel represents Shop and the other represents Player Inventory
+- [ ] Your current Currency will displayed on the top corner of the Screen
+- [ ] Initially, your player inventory will be empty and you will have no money
+- [ ] There will be many items in the shop that you can buy.
 
+## Item 
+Each item in the shop or inventory will have the following properties:
+Type
+Icon
+Item description
+Buying Price
+Selling Price
+Weight
+Rarity
+Quantity
+
+## Item Types
+
+Items can be of the following types:
+Materials
+Weapons
+Consumables
+Treasure
+The shop UI will have 4 tabs for each item type
+Selecting a tab will display available items of that type in the shop.
