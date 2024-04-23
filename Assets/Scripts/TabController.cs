@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,10 @@ public class TabController : MonoBehaviour
     [SerializeField] private GameObject pfItem;
     [SerializeField] private RectTransform itemHolder;
 
-
+    private List<ItemSO> mitem = new List<ItemSO>();
+    private List<ItemSO> titem = new List<ItemSO>();
+    private List<ItemSO> citem = new List<ItemSO>();
+    private List<ItemSO> witem = new List<ItemSO>();
 
     private void Awake()
     {
@@ -27,41 +31,106 @@ public class TabController : MonoBehaviour
 
     private void OnMaterialClick()
     {
-        foreach (var materialItem in itemListSO.materialList)
+        HideItem();
+        if (mitem.Count != 0)
         {
-            Item item = Instantiate(pfItem, itemHolder).GetComponent<Item>();
-            item.SetSprite(materialItem.iconSprite);
-            item.SetQuantityText(materialItem.quantity);
+            foreach (ItemSO item in mitem)
+            {
+                ItemDisplay(item);
+
+
+
+
+            }
+        }
+        else
+        {
+            foreach (var materialItem in itemListSO.materialList)
+            {
+                ItemDisplay(materialItem);
+                mitem.Add(materialItem);
+            }
         }
     }
 
     private void OnWeaponClick()
     {
-        foreach (var materialItem in itemListSO.weaponList)
+        HideItem();
+        if (witem.Count != 0)
         {
-            Item item = Instantiate(pfItem, itemHolder).GetComponent<Item>();
-            item.SetSprite(materialItem.iconSprite);
-            item.SetQuantityText(materialItem.quantity);
+            foreach (ItemSO item in witem)
+            {
+                ItemDisplay(item);
+
+            }
+        }
+        else
+        {
+            foreach (var wepaonItem in itemListSO.weaponList)
+            {
+                ItemDisplay(wepaonItem);
+                witem.Add(wepaonItem);
+            }
         }
     }
 
     private void OntreasureClick()
     {
-        foreach (var materialItem in itemListSO.treasureList)
+        HideItem();
+        if (titem.Count != 0)
         {
-            Item item = Instantiate(pfItem, itemHolder).GetComponent<Item>();
-            item.SetSprite(materialItem.iconSprite);
-            item.SetQuantityText(materialItem.quantity);
+            foreach (ItemSO item in titem)
+            {
+                ItemDisplay(item);
+
+
+            }
+        }
+        else
+        {
+            foreach (ItemSO teasureItem in itemListSO.treasureList)
+            {
+                ItemDisplay(teasureItem);
+                titem.Add(teasureItem);
+            }
         }
     }
 
     private void OnconsumableClick()
     {
-        foreach (var materialItem in itemListSO.consumableList)
+        HideItem();
+        if (citem.Count != 0)
         {
-            Item item = Instantiate(pfItem, itemHolder).GetComponent<Item>();
-            item.SetSprite(materialItem.iconSprite);
-            item.SetQuantityText(materialItem.quantity);
+            foreach (ItemSO item in citem)
+            {
+                ItemDisplay(item);
+
+            }
+        }
+        else
+        {
+            foreach (ItemSO consumableItem in itemListSO.consumableList)
+            {
+                ItemDisplay(consumableItem);
+                citem.Add(consumableItem);
+            }
         }
     }
+
+    private void ItemDisplay(ItemSO itemSO)
+    {
+        Item item = Instantiate(pfItem, itemHolder).GetComponent<Item>();
+        item.SetSprite(itemSO.iconSprite);
+        item.SetQuantityText(itemSO.quantity);
+        item.ItemDetails(itemSO);
+
+    }
+    private void HideItem()
+    {
+        for (int i = 0; i < itemHolder.childCount; i++)
+        {
+            Destroy(itemHolder.GetChild(i).gameObject);
+        }
+    }
+
 }
