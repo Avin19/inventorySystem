@@ -25,6 +25,8 @@ public class ItemDisplay : MonoBehaviour
         quantityText.text = itemSO.quantity.ToString();
         weightText.text = itemSO.weight.ToString();
         mainMenuController.ReceiveItemInform(itemSO);
+        mainMenuController.PLayerInventoryDisplay();
+
 
 
     }

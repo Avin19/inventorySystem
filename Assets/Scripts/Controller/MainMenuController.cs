@@ -9,6 +9,8 @@ public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private Button buyBtn, sellBtn, gatherBtn, increaseQuantityBtn, decreaseQuantitybtn, confirmBtn, cancelBtn;
     [SerializeField] private RectTransform itemDisplayRectTransfom;
+    [SerializeField] private RectTransform playerItemDisplay;
+    [SerializeField] private RectTransform shopItemDisplay;
     [SerializeField] private List<ItemSO> playerInventory = new List<ItemSO>();
     [SerializeField] private ItemSO itemData;
     [SerializeField] private RectTransform buysellPanel;
@@ -23,7 +25,15 @@ public class MainMenuController : MonoBehaviour
 
     private void OnGatherBtnClick()
     {
+        BuySellPanelControl(false);
         ItemDisplayHide();
+        if (!playerItemDisplay.gameObject.activeSelf)
+        {
+            itemDisplayRectTransfom.position = playerItemDisplay.position;
+            return;
+        }
+        itemDisplayRectTransfom.position = shopItemDisplay.position;
+
 
 
 
@@ -31,13 +41,18 @@ public class MainMenuController : MonoBehaviour
 
     private void OnSellBtnCLick()
     {
-        ItemDisplayHide();
+        BuySellPanelControl(true);
+        itemDisplayRectTransfom.position = shopItemDisplay.position;
+        playerItemDisplay.gameObject.SetActive(true);
+        shopItemDisplay.gameObject.SetActive(!playerItemDisplay.gameObject.activeSelf);
     }
 
     private void OnBuyBtnClick()
     {
-
-        ItemDisplayHide();
+        BuySellPanelControl(true);
+        itemDisplayRectTransfom.position = shopItemDisplay.position;
+        playerItemDisplay.gameObject.SetActive(true);
+        shopItemDisplay.gameObject.SetActive(!playerItemDisplay.gameObject.activeSelf);
 
     }
 
@@ -48,6 +63,19 @@ public class MainMenuController : MonoBehaviour
     public void ReceiveItemInform(ItemSO itemData)
     {
         this.itemData = itemData;
+    }
+    private void BuySellPanelControl(bool check = true)
+    {
+        buysellPanel.gameObject.SetActive(check);
+    }
+    private void BuySellPanelUpdate()
+    {
+        // increase btn , decress btn 
+
+    }
+    public void PLayerInventoryDisplay()
+    {
+        playerItemDisplay.gameObject.SetActive(false);
     }
 
 }
