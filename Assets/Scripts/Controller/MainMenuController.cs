@@ -1,4 +1,5 @@
 
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,6 +13,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private RectTransform playerItemDisplay;
     [SerializeField] private RectTransform shopItemDisplay;
     [SerializeField] private List<ItemSO> playerInventory = new List<ItemSO>();
+    [SerializeField] private ItemListSO playerInventorySOList;
     [SerializeField] private ItemSO itemData;
     [SerializeField] private ItemListSO shopItemList;
     [SerializeField] private RectTransform buysellPanel;
@@ -25,17 +27,22 @@ public class MainMenuController : MonoBehaviour
         sellBtn.onClick.AddListener(OnSellBtnCLick);
         gatherBtn.onClick.AddListener(OnGatherBtnClick);
     }
-
-    private void OnGatherBtnClick()
+    public void ItemDisplayLocation()
     {
-        BuySellPanelControl(false);
-        ItemDisplayHide();
         if (!playerItemDisplay.gameObject.activeSelf)
         {
             itemDisplayRectTransfom.position = playerItemDisplay.position;
             return;
         }
         itemDisplayRectTransfom.position = shopItemDisplay.position;
+    }
+
+    private void OnGatherBtnClick()
+    {
+        ItemDisplayLocation();
+        BuySellPanelControl(false);
+        ItemDisplayHide();
+
 
         coin += Random.Range(0, 50000);
         infoBarController.UpdateCoinValue(coin);
@@ -75,6 +82,7 @@ public class MainMenuController : MonoBehaviour
 
     private void OnSellBtnCLick()
     {
+        ItemDisplayLocation();
         BuySellPanelControl(true);
         itemDisplayRectTransfom.position = shopItemDisplay.position;
         playerItemDisplay.gameObject.SetActive(true);
@@ -83,6 +91,7 @@ public class MainMenuController : MonoBehaviour
 
     private void OnBuyBtnClick()
     {
+        ItemDisplayLocation();
         BuySellPanelControl(true);
         itemDisplayRectTransfom.position = shopItemDisplay.position;
         playerItemDisplay.gameObject.SetActive(true);
@@ -107,9 +116,16 @@ public class MainMenuController : MonoBehaviour
         // increase btn , decress btn 
 
     }
-    public void PLayerInventoryDisplay()
+    public void ShopOpen()
     {
+        shopItemDisplay.gameObject.SetActive(true);
         playerItemDisplay.gameObject.SetActive(false);
+        ItemDisplayLocation();
     }
-
+    public void PlayerOpen()
+    {
+        shopItemDisplay.gameObject.SetActive(false);
+        playerItemDisplay.gameObject.SetActive(true);
+        ItemDisplayLocation();
+    }
 }

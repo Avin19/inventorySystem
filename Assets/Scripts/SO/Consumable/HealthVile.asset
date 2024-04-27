@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701e140cb5229dc40a1a4c48cdc381e3, type: 3}
   m_Name: HealthVile
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemType: 2
   iconSprite: {fileID: -1411356927, guid: ab82ac7a74d322f48b4f8609948110dc, type: 3}
   itemDescription: Health Vile
   buyingPrice: 0
   sellingPrice: 0
   weight: 0
   rarity: 0
-  quantity: 100
+  quantity: 20

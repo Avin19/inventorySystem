@@ -24,10 +24,7 @@ public class Item : MonoBehaviour
     private void onClick()
     {
         GameObject itemDisplay = GameObject.FindGameObjectWithTag("ItemDisplay");
-
         itemDisplay.SetActive(true);
-
-
         itemDisplay.GetComponent<ItemDisplay>().DisplayInfor(itemSO);
 
     }

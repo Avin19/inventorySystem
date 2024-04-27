@@ -18,17 +18,14 @@ public class ItemDisplay : MonoBehaviour
 
     public void DisplayInfor(ItemSO itemSO)
     {
-        panelTRansfrom.gameObject.SetActive(true);
+        panelTRansfrom.gameObject.SetActive(true); // internal plane 
         itemName.text = itemSO.itemDescription;
         descriptionText.text = itemSO.itemDescription;
         image.sprite = itemSO.iconSprite;
         quantityText.text = itemSO.quantity.ToString();
         weightText.text = itemSO.weight.ToString();
         mainMenuController.ReceiveItemInform(itemSO);
-        mainMenuController.PLayerInventoryDisplay();
-
-
-
+        mainMenuController.ItemDisplayLocation();
     }
 
 }

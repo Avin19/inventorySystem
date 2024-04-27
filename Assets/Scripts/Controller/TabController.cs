@@ -16,6 +16,7 @@ public class TabController : MonoBehaviour
     [SerializeField] private GameObject pfItem;
     [SerializeField] private RectTransform itemHolder;
 
+
     private List<ItemSO> mitem = new List<ItemSO>();
     private List<ItemSO> titem = new List<ItemSO>();
     private List<ItemSO> citem = new List<ItemSO>();
@@ -28,6 +29,8 @@ public class TabController : MonoBehaviour
         treasureBtn.onClick.AddListener(OntreasureClick);
         consumableBtn.onClick.AddListener(OnconsumableClick);
     }
+
+    // Create a check condition as i am instantiating and destorying the item frequently
 
     private void OnMaterialClick()
     {
