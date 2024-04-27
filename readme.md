@@ -44,3 +44,9 @@ Initially, the player will have nothing in the inventory and no money as well.
 The player can click the gather resource button and collect some random items.
 The rarity of items gathered will be directly proportional to the cumulative value of the player’s inventory.
 If the inventory’s weight offshoots the maximum weight that can be carried, the gathering resources button will not work and a popup will be shown to indicate the same to the player.
+
+
+
+## PUML Class Diagram 
+
+![Class Diagram](include.png)
