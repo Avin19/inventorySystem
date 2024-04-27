@@ -11,6 +11,7 @@ public class ItemDisplay : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private RectTransform panelTRansfrom;
     [SerializeField] private TextMeshProUGUI itemName, quantityText, descriptionText, weightText;
+    [SerializeField] private MainMenuController mainMenuController;
 
 
 
@@ -23,6 +24,7 @@ public class ItemDisplay : MonoBehaviour
         image.sprite = itemSO.iconSprite;
         quantityText.text = itemSO.quantity.ToString();
         weightText.text = itemSO.weight.ToString();
+        mainMenuController.ReceiveItemInform(itemSO);
 
 
     }

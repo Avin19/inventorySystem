@@ -7,10 +7,12 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] private Button buyBtn, sellBtn, gatherBtn;
+    [SerializeField] private Button buyBtn, sellBtn, gatherBtn, increaseQuantityBtn, decreaseQuantitybtn, confirmBtn, cancelBtn;
     [SerializeField] private RectTransform itemDisplayRectTransfom;
     [SerializeField] private List<ItemSO> playerInventory = new List<ItemSO>();
-    [SerializeField] private ItemListSO itemListSO;
+    [SerializeField] private ItemSO itemData;
+    [SerializeField] private RectTransform buysellPanel;
+
 
     private void Awake()
     {
@@ -22,10 +24,7 @@ public class MainMenuController : MonoBehaviour
     private void OnGatherBtnClick()
     {
         ItemDisplayHide();
-        foreach (ItemSO item in itemListSO.weaponList)
-        {
-            Debug.Log(item.itemDescription);
-        }
+
 
 
     }
@@ -37,11 +36,18 @@ public class MainMenuController : MonoBehaviour
 
     private void OnBuyBtnClick()
     {
+
         ItemDisplayHide();
+
     }
 
     private void ItemDisplayHide()
     {
         itemDisplayRectTransfom.gameObject.SetActive(false);
     }
+    public void ReceiveItemInform(ItemSO itemData)
+    {
+        this.itemData = itemData;
+    }
+
 }
