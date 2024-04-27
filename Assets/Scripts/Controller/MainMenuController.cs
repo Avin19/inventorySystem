@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,7 +13,10 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private RectTransform shopItemDisplay;
     [SerializeField] private List<ItemSO> playerInventory = new List<ItemSO>();
     [SerializeField] private ItemSO itemData;
+    [SerializeField] private ItemListSO shopItemList;
     [SerializeField] private RectTransform buysellPanel;
+    [SerializeField] private InfoBarController infoBarController;
+    private int coin = 0;
 
 
     private void Awake()
@@ -34,9 +37,40 @@ public class MainMenuController : MonoBehaviour
         }
         itemDisplayRectTransfom.position = shopItemDisplay.position;
 
+        coin += Random.Range(0, 50000);
+        infoBarController.UpdateCoinValue(coin);
+
+        // player material Gather 
+        PlayerMaterialGather();
+
+    }
+
+    private void PlayerMaterialGather()
+    {
+        ItemType itemlist = ItemType.Material;
+        for (int i = 0; i < shopItemList.Types.Count; i++)
+        {
+            itemlist = shopItemList.Types[Random.Range(0, shopItemList.Types.Count)];
 
 
-
+            if (itemlist == shopItemList.Types[0])
+            {
+                playerInventory.Add(shopItemList.materialList[Random.Range(0, shopItemList.materialList.Count)]);
+            }
+            if (itemlist == shopItemList.Types[1])
+            {
+                playerInventory.Add(shopItemList.weaponList[Random.Range(0, shopItemList.weaponList.Count)]);
+            }
+            if (itemlist == shopItemList.Types[2])
+            {
+                playerInventory.Add(shopItemList.consumableList[Random.Range(0, shopItemList.consumableList.Count)]);
+            }
+            if (itemlist == shopItemList.Types[3])
+            {
+                playerInventory.Add(shopItemList.treasureList[Random.Range(0, shopItemList.treasureList.Count)]);
+            }
+        }
+        playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().GotPlayerInventory(playerInventory);
     }
 
     private void OnSellBtnCLick()

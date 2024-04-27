@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 52446558}
   - component: {fileID: 52446560}
   - component: {fileID: 52446559}
+  - component: {fileID: 52446561}
   m_Layer: 5
   m_Name: 'InfoBar '
   m_TagString: Untagged
@@ -200,6 +201,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52446557}
   m_CullTransparentMesh: 1
+--- !u!114 &52446561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52446557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb84c0b2e472bd42bacccc988b9c459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinText: {fileID: 1243737022}
 --- !u!1 &72424475
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,7 +2303,9 @@ MonoBehaviour:
   shopItemDisplay: {fileID: 1258412491}
   playerInventory: []
   itemData: {fileID: 11400000, guid: 5f08c1dba1fb9cf498c3273c4e8cbaa2, type: 2}
+  shopItemList: {fileID: 11400000, guid: 74ebd01f68ce95c4a929f2ee801cf7cd, type: 2}
   buysellPanel: {fileID: 429291662}
+  infoBarController: {fileID: 52446561}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -4076,6 +4092,7 @@ GameObject:
   - component: {fileID: 1649347084}
   - component: {fileID: 1649347083}
   - component: {fileID: 1649347086}
+  - component: {fileID: 1649347087}
   m_Layer: 5
   m_Name: PlayerItemHolder
   m_TagString: Untagged
@@ -4189,6 +4206,21 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1649347087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649347081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbc216bd251aa854e95923d8bca26955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInventory: []
+  pfItem: {fileID: 6637097129293252068, guid: cfe3b988e6093574186c8f0c4f302ef2, type: 3}
+  itemHolder: {fileID: 1649347082}
 --- !u!1 &1667183001
 GameObject:
   m_ObjectHideFlags: 0
