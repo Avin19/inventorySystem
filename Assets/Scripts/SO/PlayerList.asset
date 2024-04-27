@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df7be0c4561b0b4f8b39f19fc99f32d, type: 3}
   m_Name: PlayerList
   m_EditorClassIdentifier: 
+  Types: 00000000010000000200000003000000
   materialList: []
   weaponList: []
   consumableList: []

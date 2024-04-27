@@ -59,22 +59,33 @@ public class MainMenuController : MonoBehaviour
         {
             itemlist = shopItemList.Types[Random.Range(0, shopItemList.Types.Count)];
 
-
+            ItemSO item;
             if (itemlist == shopItemList.Types[0])
             {
-                playerInventory.Add(shopItemList.materialList[Random.Range(0, shopItemList.materialList.Count)]);
+                item = shopItemList.materialList[Random.Range(0, shopItemList.materialList.Count)];
+                playerInventory.Add(item);
+                playerInventorySOList.materialList.Add(item);
             }
             if (itemlist == shopItemList.Types[1])
             {
-                playerInventory.Add(shopItemList.weaponList[Random.Range(0, shopItemList.weaponList.Count)]);
+                item = shopItemList.weaponList[Random.Range(0, shopItemList.weaponList.Count)];
+                playerInventory.Add(item);
+                playerInventorySOList.materialList.Add(item);
+
             }
             if (itemlist == shopItemList.Types[2])
             {
-                playerInventory.Add(shopItemList.consumableList[Random.Range(0, shopItemList.consumableList.Count)]);
+                item = shopItemList.consumableList[Random.Range(0, shopItemList.consumableList.Count)];
+                playerInventory.Add(item);
+                playerInventorySOList.materialList.Add(item);
+
             }
             if (itemlist == shopItemList.Types[3])
             {
-                playerInventory.Add(shopItemList.treasureList[Random.Range(0, shopItemList.treasureList.Count)]);
+                item = shopItemList.treasureList[Random.Range(0, shopItemList.treasureList.Count)];
+                playerInventory.Add(item);
+                playerInventorySOList.materialList.Add(item);
+
             }
         }
         playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().GotPlayerInventory(playerInventory);
