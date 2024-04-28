@@ -2397,6 +2397,7 @@ MonoBehaviour:
   playerItemDisplay: {fileID: 2097240935}
   shopItemDisplay: {fileID: 1258412491}
   playerInventory: []
+  playerInventorySOList: {fileID: 11400000, guid: 80e0d519d7197574ca35112f7e8c14b5, type: 2}
   itemData: {fileID: 11400000, guid: 5f08c1dba1fb9cf498c3273c4e8cbaa2, type: 2}
   shopItemList: {fileID: 11400000, guid: 74ebd01f68ce95c4a929f2ee801cf7cd, type: 2}
   buysellPanel: {fileID: 429291662}
@@ -4313,7 +4314,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInventory: []
-  playerInventorySOList: {fileID: 11400000, guid: 80e0d519d7197574ca35112f7e8c14b5, type: 2}
   pfItem: {fileID: 6637097129293252068, guid: cfe3b988e6093574186c8f0c4f302ef2, type: 3}
 --- !u!1 &1667183001
 GameObject:
