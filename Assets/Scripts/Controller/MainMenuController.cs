@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] private Button buyBtn, sellBtn, gatherBtn, increaseQuantityBtn, decreaseQuantitybtn, confirmBtn, cancelBtn;
+    [SerializeField] private Button buyBtn, sellBtn, gatherBtn;
     [SerializeField] private RectTransform itemDisplayRectTransfom;
     [SerializeField] private RectTransform playerItemDisplay;
     [SerializeField] private RectTransform shopItemDisplay;
@@ -23,6 +23,12 @@ public class MainMenuController : MonoBehaviour
         buyBtn.onClick.AddListener(OnBuyBtnClick);
         sellBtn.onClick.AddListener(OnSellBtnCLick);
         gatherBtn.onClick.AddListener(OnGatherBtnClick);
+    }
+    private void OnDestroy()
+    {
+        sellBtn.onClick.RemoveListener(OnSellBtnCLick);
+        buyBtn.onClick.RemoveListener(OnBuyBtnClick);
+        gatherBtn.onClick.RemoveListener(OnGatherBtnClick);
     }
     public void ItemDisplayLocation()
     {
@@ -42,7 +48,7 @@ public class MainMenuController : MonoBehaviour
 
 
         coin += Random.Range(0, 50000);
-        infoBarController.UpdateCoinValue(coin);
+        // infoBarController.UpdateCoinValue(coin);
 
         // player material Gather 
         PlayerMaterialGather();
