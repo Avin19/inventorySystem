@@ -27,8 +27,8 @@ public class ItemSO : ScriptableObject
     public ItemType itemType;
     public Sprite iconSprite;
     public string itemDescription;
-    public float buyingPrice;
-    public float sellingPrice;
+    public int buyingPrice;
+    public int sellingPrice;
     public float weight;
     public ItemRarity rarity;
     public int quantity;

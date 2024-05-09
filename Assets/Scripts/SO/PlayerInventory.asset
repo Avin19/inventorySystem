@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3df7be0c4561b0b4f8b39f19fc99f32d, type: 3}
-  m_Name: PlayerList
+  m_Script: {fileID: 11500000, guid: 205d8e5be15c7264fbe20d77ebc4ba48, type: 3}
+  m_Name: PlayerInventory
   m_EditorClassIdentifier: 
-  Types: 00000000010000000200000003000000
-  materialList: []
-  weaponList: []
-  consumableList: []
-  treasureList: []
+  playerInventory: []

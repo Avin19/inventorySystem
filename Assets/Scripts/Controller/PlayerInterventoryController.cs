@@ -1,35 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInterventoryController : MonoBehaviour
 {
-    [SerializeField] private List<ItemSO> playerInventory = new List<ItemSO>();
+
+    [SerializeField] private PlayerInventorySO playerInventorySO;
 
     [SerializeField] private GameObject pfItem;
 
-
-    public void GotPlayerInventory(List<ItemSO> _playerInventory)
+    private void Start()
+    {
+        Display();
+    }
+    public void Display()
     {
         //Create a check for already existing items
 
-        foreach (ItemSO item in _playerInventory)
+        foreach (ItemSO item in playerInventorySO.Inventory)
         {
 
-            if (!playerInventory.Contains(item)) { ItemDisplay(item); }
-            else
-            {
-                // checkc hich item it is matching 
-                for (int i = 0; i < playerInventory.Count; i++)
-                {
-                    if (playerInventory[i] == item)
-                    {
-                        playerInventory[i].quantity += item.quantity;
 
-                    }
-                }
-            }
+
+            ItemDisplay(item);
+
+
 
         }
     }
@@ -39,8 +32,5 @@ public class PlayerInterventoryController : MonoBehaviour
         item.SetSprite(itemSO.iconSprite);
         item.SetQuantityText(itemSO.quantity);
         item.ItemDetails(itemSO);
-        playerInventory.Add(itemSO);
-
-
     }
 }

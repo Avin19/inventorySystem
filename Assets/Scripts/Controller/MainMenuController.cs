@@ -1,30 +1,32 @@
 
-
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] private Button buyBtn, sellBtn, gatherBtn, increaseQuantityBtn, decreaseQuantitybtn, confirmBtn, cancelBtn;
+    [SerializeField] private Button transcationBtn, gatherBtn, increaseQuantityBtn, decreaseQuantitybtn, confirmBtn, cancelBtn;
     [SerializeField] private RectTransform itemDisplayRectTransfom;
     [SerializeField] private RectTransform playerItemDisplay;
     [SerializeField] private RectTransform shopItemDisplay;
     [SerializeField] private List<ItemSO> playerInventory = new List<ItemSO>();
-    [SerializeField] private ItemListSO playerInventorySOList;
+    [SerializeField] private PlayerStatus playerStatus;
     [SerializeField] private ItemSO itemData;
+    [SerializeField] private PlayerInventorySO playerInventorySO;
     [SerializeField] private ItemListSO shopItemList;
     [SerializeField] private RectTransform buysellPanel;
     [SerializeField] private InfoBarController infoBarController;
+    [SerializeField] private BuySellController buySellController;
     private int coin = 0;
+
+
 
 
     private void Awake()
     {
-        buyBtn.onClick.AddListener(OnBuyBtnClick);
-        sellBtn.onClick.AddListener(OnSellBtnCLick);
+        transcationBtn.onClick.AddListener(OnBuyBtnClick);
+
         gatherBtn.onClick.AddListener(OnGatherBtnClick);
     }
     public void ItemDisplayLocation()
@@ -44,8 +46,9 @@ public class MainMenuController : MonoBehaviour
         ItemDisplayHide();
 
 
-        coin += Random.Range(0, 50000);
+        coin += Random.Range(0, 500);
         infoBarController.UpdateCoinValue(coin);
+        playerStatus.coin = coin;
 
         // player material Gather 
         PlayerMaterialGather();
@@ -63,50 +66,58 @@ public class MainMenuController : MonoBehaviour
             if (itemlist == shopItemList.Types[0])
             {
                 item = shopItemList.materialList[Random.Range(0, shopItemList.materialList.Count)];
-                playerInventory.Add(item);
-                playerInventorySOList.materialList.Add(item);
+                AddDataToInventory(item);
+
             }
             if (itemlist == shopItemList.Types[1])
             {
                 item = shopItemList.weaponList[Random.Range(0, shopItemList.weaponList.Count)];
-                playerInventory.Add(item);
-                playerInventorySOList.materialList.Add(item);
-
+                AddDataToInventory(item);
             }
             if (itemlist == shopItemList.Types[2])
             {
                 item = shopItemList.consumableList[Random.Range(0, shopItemList.consumableList.Count)];
-                playerInventory.Add(item);
-                playerInventorySOList.materialList.Add(item);
+                AddDataToInventory(item);
 
             }
             if (itemlist == shopItemList.Types[3])
             {
                 item = shopItemList.treasureList[Random.Range(0, shopItemList.treasureList.Count)];
-                playerInventory.Add(item);
-                playerInventorySOList.materialList.Add(item);
+                AddDataToInventory(item);
 
             }
         }
-        playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().GotPlayerInventory(playerInventory);
+        playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().Display();
+
     }
 
-    private void OnSellBtnCLick()
+    private void AddDataToInventory(ItemSO item)
     {
-        ItemDisplayLocation();
-        BuySellPanelControl(true);
-        itemDisplayRectTransfom.position = shopItemDisplay.position;
-        playerItemDisplay.gameObject.SetActive(true);
-        shopItemDisplay.gameObject.SetActive(!playerItemDisplay.gameObject.activeSelf);
+        // check item it is matching 
+        for (int i = 0; i < playerInventorySO.Inventory.Count; i++)
+        {
+            if (playerInventorySO.Inventory[i] == item)
+            {
+                playerInventorySO.Inventory[i].quantity += item.quantity;
+
+            }
+            else
+            {
+                playerInventorySO.Inventory.Add(item);
+            }
+        }
+
     }
+
+
 
     private void OnBuyBtnClick()
     {
         ItemDisplayLocation();
         BuySellPanelControl(true);
+        buySellController.SetItem(itemData);
         itemDisplayRectTransfom.position = shopItemDisplay.position;
-        playerItemDisplay.gameObject.SetActive(true);
-        shopItemDisplay.gameObject.SetActive(!playerItemDisplay.gameObject.activeSelf);
+
 
     }
 
@@ -122,11 +133,7 @@ public class MainMenuController : MonoBehaviour
     {
         buysellPanel.gameObject.SetActive(check);
     }
-    private void BuySellPanelUpdate()
-    {
-        // increase btn , decress btn 
 
-    }
     public void ShopOpen()
     {
         shopItemDisplay.gameObject.SetActive(true);
