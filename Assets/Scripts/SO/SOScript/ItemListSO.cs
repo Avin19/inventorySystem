@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ using UnityEngine;
 public class ItemListSO : ScriptableObject
 {
     [SerializeField] private ItemInventory[] itemInventories;
-    private Dictionary<ItemType, List<ItemSO>> itemDic = new Dictionary<ItemType, List<ItemSO>>();
+    [SerializeField] private Dictionary<ItemType, List<ItemSO>> itemDic = new Dictionary<ItemType, List<ItemSO>>();
 
     private void OnEnable()
     {
@@ -17,14 +18,19 @@ public class ItemListSO : ScriptableObject
 
 
     }
+    public List<ItemSO> GetItemByType(ItemType type)
+    {
+        itemDic.TryGetValue(type, out var list);
+        return list;
+    }
 
 }
 
-
+[Serializable]
 public class ItemInventory
 {
-    private ItemType itemType;
-    private List<ItemSO> itemList;
+    [SerializeField] private ItemType itemType;
+    [SerializeField] private List<ItemSO> itemList;
 
     public ItemType ItemType => itemType;
     public List<ItemSO> ItemList => itemList;

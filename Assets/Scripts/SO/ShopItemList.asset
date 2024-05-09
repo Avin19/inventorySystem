@@ -12,4 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df7be0c4561b0b4f8b39f19fc99f32d, type: 3}
   m_Name: ShopItemList
   m_EditorClassIdentifier: 
-  itemInventories: []
+  itemInventories:
+  - itemType: 0
+    itemList:
+    - {fileID: 11400000, guid: a3d1112d883f64547988f387794e6712, type: 2}
+    - {fileID: 11400000, guid: d9789efc9aedbec4087b448b371d1b6a, type: 2}
+    - {fileID: 11400000, guid: 57c0099bc1a7dc347b00cc1a7e4ed610, type: 2}
+    - {fileID: 11400000, guid: 687cb10e5e015e944b94a70cebb20b2d, type: 2}
+    - {fileID: 11400000, guid: 81571c7979e230e4bbf337d804860bfa, type: 2}
+  - itemType: 1
+    itemList:
+    - {fileID: 11400000, guid: 2494392658ce6ec4fae84691b2d27c9f, type: 2}
+    - {fileID: 11400000, guid: 758d8c67e387e83418d2dfef887f2e24, type: 2}
+    - {fileID: 11400000, guid: 4e11b96db942f6b42bd112f05083bb00, type: 2}
+  - itemType: 2
+    itemList:
+    - {fileID: 11400000, guid: 5f08c1dba1fb9cf498c3273c4e8cbaa2, type: 2}
+    - {fileID: 11400000, guid: 8634b0b23025cc24997c8ed7dec21b80, type: 2}
+    - {fileID: 11400000, guid: cf6b9abc0fd390b43b59d961c3e5b7a0, type: 2}
+    - {fileID: 11400000, guid: 6b444898b99d6274f9609ea9e9552544, type: 2}
+    - {fileID: 11400000, guid: 581138d62e4b08a4a9eae88b24325544, type: 2}
+    - {fileID: 11400000, guid: f6d873007ac34114f9ddad04ac731cff, type: 2}
+    - {fileID: 11400000, guid: cf8708353c8211c4993ff26eebb7087a, type: 2}
+  - itemType: 0
+    itemList:
+    - {fileID: 11400000, guid: 8afa551ccdf7cea4aad365e50bc479a8, type: 2}
+    - {fileID: 11400000, guid: 978178729c843864fb0374c29a126849, type: 2}
+    - {fileID: 11400000, guid: c2c7b6bc0e2f27d45a19c7e07dee1efe, type: 2}
+    - {fileID: 11400000, guid: 6efd366161133854386b507db691f264, type: 2}

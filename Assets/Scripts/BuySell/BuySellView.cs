@@ -13,4 +13,10 @@ public class BuyCellView : MonoBehaviour
     public Button RemoveQuantityButton => removeQuantityBtn;
     public TextMeshProUGUI QuantityText => quantityText;
     public TextMeshProUGUI TitleText => titleText;
+
+    private void Awake()
+    {
+        BuySellController buySellController = new BuySellController(this);
+    }
+
 }
