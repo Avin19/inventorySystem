@@ -15,20 +15,20 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private ItemListSO shopItemList;
     [SerializeField] private RectTransform buysellPanel;
     [SerializeField] private InfoBarController infoBarController;
-    private int coin = 0;
+    // private int coin = 0;
 
 
     private void Awake()
     {
-        buyBtn.onClick.AddListener(OnBuyBtnClick);
-        sellBtn.onClick.AddListener(OnSellBtnCLick);
-        gatherBtn.onClick.AddListener(OnGatherBtnClick);
+        // buyBtn.onClick.AddListener(OnBuyBtnClick);
+        // sellBtn.onClick.AddListener(OnSellBtnCLick);
+        // gatherBtn.onClick.AddListener(OnGatherBtnClick);
     }
     private void OnDestroy()
     {
-        sellBtn.onClick.RemoveListener(OnSellBtnCLick);
-        buyBtn.onClick.RemoveListener(OnBuyBtnClick);
-        gatherBtn.onClick.RemoveListener(OnGatherBtnClick);
+        // sellBtn.onClick.RemoveListener(OnSellBtnCLick);
+        // buyBtn.onClick.RemoveListener(OnBuyBtnClick);
+        // gatherBtn.onClick.RemoveListener(OnGatherBtnClick);
     }
     public void ItemDisplayLocation()
     {
@@ -40,106 +40,106 @@ public class MainMenuController : MonoBehaviour
         itemDisplayRectTransfom.position = shopItemDisplay.position;
     }
 
-    private void OnGatherBtnClick()
-    {
-        ItemDisplayLocation();
-        BuySellPanelControl(false);
-        ItemDisplayHide();
+    // private void OnGatherBtnClick()
+    // {
+    //     ItemDisplayLocation();
+    //     BuySellPanelControl(false);
+    //     ItemDisplayHide();
 
 
-        coin += Random.Range(0, 50000);
-        // infoBarController.UpdateCoinValue(coin);
+    //     coin += Random.Range(0, 50000);
+    //     // infoBarController.UpdateCoinValue(coin);
 
-        // player material Gather 
-        PlayerMaterialGather();
+    //     // player material Gather 
+    //     PlayerMaterialGather();
 
-    }
+    // }
 
-    private void PlayerMaterialGather()
-    {
-        ItemType itemlist = ItemType.Material;
-        for (int i = 0; i < shopItemList.Types.Count; i++)
-        {
-            itemlist = shopItemList.Types[Random.Range(0, shopItemList.Types.Count)];
+    // private void PlayerMaterialGather()
+    // {
+    //     ItemType itemlist = ItemType.Material;
+    //     for (int i = 0; i < shopItemList.Types.Count; i++)
+    //     {
+    //         itemlist = shopItemList.Types[Random.Range(0, shopItemList.Types.Count)];
 
-            ItemSO item;
-            if (itemlist == shopItemList.Types[0])
-            {
-                item = shopItemList.materialList[Random.Range(0, shopItemList.materialList.Count)];
-                playerInventory.Add(item);
-                playerInventorySOList.materialList.Add(item);
-            }
-            if (itemlist == shopItemList.Types[1])
-            {
-                item = shopItemList.weaponList[Random.Range(0, shopItemList.weaponList.Count)];
-                playerInventory.Add(item);
-                playerInventorySOList.materialList.Add(item);
+    //         ItemSO item;
+    //         if (itemlist == shopItemList.Types[0])
+    //         {
+    //             item = shopItemList.materialList[Random.Range(0, shopItemList.materialList.Count)];
+    //             playerInventory.Add(item);
+    //             playerInventorySOList.materialList.Add(item);
+    //         }
+    //         if (itemlist == shopItemList.Types[1])
+    //         {
+    //             item = shopItemList.weaponList[Random.Range(0, shopItemList.weaponList.Count)];
+    //             playerInventory.Add(item);
+    //             playerInventorySOList.materialList.Add(item);
 
-            }
-            if (itemlist == shopItemList.Types[2])
-            {
-                item = shopItemList.consumableList[Random.Range(0, shopItemList.consumableList.Count)];
-                playerInventory.Add(item);
-                playerInventorySOList.materialList.Add(item);
+    //         }
+    //         if (itemlist == shopItemList.Types[2])
+    //         {
+    //             item = shopItemList.consumableList[Random.Range(0, shopItemList.consumableList.Count)];
+    //             playerInventory.Add(item);
+    //             playerInventorySOList.materialList.Add(item);
 
-            }
-            if (itemlist == shopItemList.Types[3])
-            {
-                item = shopItemList.treasureList[Random.Range(0, shopItemList.treasureList.Count)];
-                playerInventory.Add(item);
-                playerInventorySOList.materialList.Add(item);
+    //         }
+    //         if (itemlist == shopItemList.Types[3])
+    //         {
+    //             item = shopItemList.treasureList[Random.Range(0, shopItemList.treasureList.Count)];
+    //             playerInventory.Add(item);
+    //             playerInventorySOList.materialList.Add(item);
 
-            }
-        }
-        playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().GotPlayerInventory(playerInventory);
-    }
+    //         }
+    //     }
+    //     playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().GotPlayerInventory(playerInventory);
+    // }
 
-    private void OnSellBtnCLick()
-    {
-        ItemDisplayLocation();
-        BuySellPanelControl(true);
-        itemDisplayRectTransfom.position = shopItemDisplay.position;
-        playerItemDisplay.gameObject.SetActive(true);
-        shopItemDisplay.gameObject.SetActive(!playerItemDisplay.gameObject.activeSelf);
-    }
+    // private void OnSellBtnCLick()
+    // {
+    //     ItemDisplayLocation();
+    //     BuySellPanelControl(true);
+    //     itemDisplayRectTransfom.position = shopItemDisplay.position;
+    //     playerItemDisplay.gameObject.SetActive(true);
+    //     shopItemDisplay.gameObject.SetActive(!playerItemDisplay.gameObject.activeSelf);
+    // }
 
-    private void OnBuyBtnClick()
-    {
-        ItemDisplayLocation();
-        BuySellPanelControl(true);
-        itemDisplayRectTransfom.position = shopItemDisplay.position;
-        playerItemDisplay.gameObject.SetActive(true);
-        shopItemDisplay.gameObject.SetActive(!playerItemDisplay.gameObject.activeSelf);
+    // private void OnBuyBtnClick()
+    // {
+    //     ItemDisplayLocation();
+    //     BuySellPanelControl(true);
+    //     itemDisplayRectTransfom.position = shopItemDisplay.position;
+    //     playerItemDisplay.gameObject.SetActive(true);
+    //     shopItemDisplay.gameObject.SetActive(!playerItemDisplay.gameObject.activeSelf);
 
-    }
+    // }
 
-    private void ItemDisplayHide()
-    {
-        itemDisplayRectTransfom.gameObject.SetActive(false);
-    }
-    public void ReceiveItemInform(ItemSO itemData)
-    {
-        this.itemData = itemData;
-    }
-    private void BuySellPanelControl(bool check = true)
-    {
-        buysellPanel.gameObject.SetActive(check);
-    }
-    private void BuySellPanelUpdate()
-    {
-        // increase btn , decress btn 
+    // private void ItemDisplayHide()
+    // {
+    //     itemDisplayRectTransfom.gameObject.SetActive(false);
+    // }
+    // public void ReceiveItemInform(ItemSO itemData)
+    // {
+    //     this.itemData = itemData;
+    // }
+    // private void BuySellPanelControl(bool check = true)
+    // {
+    //     buysellPanel.gameObject.SetActive(check);
+    // }
+    // private void BuySellPanelUpdate()
+    // {
+    //     // increase btn , decress btn 
 
-    }
-    public void ShopOpen()
-    {
-        shopItemDisplay.gameObject.SetActive(true);
-        playerItemDisplay.gameObject.SetActive(false);
-        ItemDisplayLocation();
-    }
-    public void PlayerOpen()
-    {
-        shopItemDisplay.gameObject.SetActive(false);
-        playerItemDisplay.gameObject.SetActive(true);
-        ItemDisplayLocation();
-    }
+    // }
+    // public void ShopOpen()
+    // {
+    //     shopItemDisplay.gameObject.SetActive(true);
+    //     playerItemDisplay.gameObject.SetActive(false);
+    //     ItemDisplayLocation();
+    // }
+    // public void PlayerOpen()
+    // {
+    //     shopItemDisplay.gameObject.SetActive(false);
+    //     playerItemDisplay.gameObject.SetActive(true);
+    //     ItemDisplayLocation();
+    // }
 }

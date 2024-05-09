@@ -23,7 +23,7 @@ public class ItemDisplay : MonoBehaviour
         image.sprite = itemSO.iconSprite;
         quantityText.text = itemSO.quantity.ToString();
         weightText.text = itemSO.weight.ToString();
-        mainMenuController.ReceiveItemInform(itemSO);
+        // mainMenuController.ReceiveItemInform(itemSO);
         mainMenuController.ItemDisplayLocation();
     }
 
