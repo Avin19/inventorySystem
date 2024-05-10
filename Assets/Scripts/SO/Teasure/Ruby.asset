@@ -15,8 +15,8 @@ MonoBehaviour:
   itemType: 3
   iconSprite: {fileID: -235587302, guid: ab82ac7a74d322f48b4f8609948110dc, type: 3}
   itemDescription: Ruby
-  buyingPrice: 0
-  sellingPrice: 0
-  weight: 0
+  buyingPrice: 100
+  sellingPrice: 40
+  weight: 1
   rarity: 2
-  quantity: 2
+  quantity: 8

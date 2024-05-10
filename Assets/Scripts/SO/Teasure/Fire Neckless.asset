@@ -15,8 +15,8 @@ MonoBehaviour:
   itemType: 3
   iconSprite: {fileID: 1011802791, guid: ab82ac7a74d322f48b4f8609948110dc, type: 3}
   itemDescription: Fire Neckless
-  buyingPrice: 0
-  sellingPrice: 0
-  weight: 0
+  buyingPrice: 1200
+  sellingPrice: 600
+  weight: 1
   rarity: 0
-  quantity: 2
+  quantity: 10

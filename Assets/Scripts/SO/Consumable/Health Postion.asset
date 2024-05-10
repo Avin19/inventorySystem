@@ -15,8 +15,8 @@ MonoBehaviour:
   itemType: 2
   iconSprite: {fileID: -1261387681, guid: ab82ac7a74d322f48b4f8609948110dc, type: 3}
   itemDescription: Health Postion
-  buyingPrice: 0
-  sellingPrice: 0
-  weight: 0
+  buyingPrice: 10
+  sellingPrice: 5
+  weight: 1
   rarity: 0
-  quantity: 20
+  quantity: 40

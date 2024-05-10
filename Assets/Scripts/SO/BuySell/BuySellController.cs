@@ -13,6 +13,7 @@ public class BuySellController : MonoBehaviour
     [SerializeField] private PlayerStatus playerStatus;
     [SerializeField] private PlayerInventorySO playerInventorySO;
     [SerializeField] private ItemListSO shopList;
+    [SerializeField] private RectTransform playerItemDisplay;
     private int quantity = 0;
     private void OnEnable()
     {
@@ -51,6 +52,9 @@ public class BuySellController : MonoBehaviour
         CheckingItemChangeItemQuanity(item, quantity);
         Invoke(nameof(ResetQuantity), 1f);
         ReduceTheAmountInShopList(item);
+        playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().Display();
+
+
 
 
     }

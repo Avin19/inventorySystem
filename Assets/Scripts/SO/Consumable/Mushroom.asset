@@ -15,8 +15,8 @@ MonoBehaviour:
   itemType: 2
   iconSprite: {fileID: 1900802868, guid: ab82ac7a74d322f48b4f8609948110dc, type: 3}
   itemDescription: Mushroom
-  buyingPrice: 0
-  sellingPrice: 0
-  weight: 0
+  buyingPrice: 5
+  sellingPrice: 2
+  weight: 1
   rarity: 0
-  quantity: 10485760
+  quantity: 100
