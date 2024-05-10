@@ -9,4 +9,9 @@ public class PlayerInventorySO : ScriptableObject
 
 
     public List<ItemSO> Inventory => playerInventory;
+
+    public void SetItem(ItemSO item)
+    {
+        playerInventory.Add(item);
+    }
 }

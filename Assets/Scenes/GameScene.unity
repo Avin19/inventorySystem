@@ -1609,6 +1609,7 @@ MonoBehaviour:
   quantityTxt: {fileID: 304945637}
   playerStatus: {fileID: 11400000, guid: 3e3d298f35c603b4796714ddd1f7c5b6, type: 2}
   playerInventorySO: {fileID: 11400000, guid: 0a8f29b1128769c4abb54689d0823423, type: 2}
+  shopList: {fileID: 0}
 --- !u!1 &507542262
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,9 +2348,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4387877818631046928}
   - {fileID: 1258412491}
   - {fileID: 2097240935}
-  - {fileID: 4387877818631046928}
   - {fileID: 52446558}
   - {fileID: 429291662}
   m_Father: {fileID: 1008478603}
@@ -2418,7 +2419,6 @@ MonoBehaviour:
   itemDisplayRectTransfom: {fileID: 992430470}
   playerItemDisplay: {fileID: 2097240935}
   shopItemDisplay: {fileID: 1258412491}
-  playerInventory: []
   playerStatus: {fileID: 11400000, guid: 3e3d298f35c603b4796714ddd1f7c5b6, type: 2}
   itemData: {fileID: 11400000, guid: 5f08c1dba1fb9cf498c3273c4e8cbaa2, type: 2}
   playerInventorySO: {fileID: 11400000, guid: 0a8f29b1128769c4abb54689d0823423, type: 2}

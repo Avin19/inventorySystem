@@ -10,7 +10,6 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private RectTransform itemDisplayRectTransfom;
     [SerializeField] private RectTransform playerItemDisplay;
     [SerializeField] private RectTransform shopItemDisplay;
-    [SerializeField] private List<ItemSO> playerInventory = new List<ItemSO>();
     [SerializeField] private PlayerStatus playerStatus;
     [SerializeField] private ItemSO itemData;
     [SerializeField] private PlayerInventorySO playerInventorySO;
@@ -68,6 +67,7 @@ public class MainMenuController : MonoBehaviour
                 item = shopItemList.materialList[Random.Range(0, shopItemList.materialList.Count)];
                 AddDataToInventory(item);
 
+
             }
             if (itemlist == shopItemList.Types[1])
             {
@@ -86,26 +86,24 @@ public class MainMenuController : MonoBehaviour
                 AddDataToInventory(item);
 
             }
+            playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().Display();
+
         }
-        playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().Display();
 
     }
 
     private void AddDataToInventory(ItemSO item)
     {
-        // check item it is matching 
-        for (int i = 0; i < playerInventorySO.Inventory.Count; i++)
+        if (playerInventorySO.Inventory.Contains(item))
         {
-            if (playerInventorySO.Inventory[i] == item)
-            {
-                playerInventorySO.Inventory[i].quantity += item.quantity;
-
-            }
-            else
-            {
-                playerInventorySO.Inventory.Add(item);
-            }
+            playerInventorySO.Inventory[playerInventorySO.Inventory.IndexOf(item)].quantity += item.quantity;
         }
+        else
+        {
+            playerInventorySO.Inventory.Add(item);
+        }
+
+
 
     }
 
@@ -116,9 +114,7 @@ public class MainMenuController : MonoBehaviour
         ItemDisplayLocation();
         BuySellPanelControl(true);
         buySellController.SetItem(itemData);
-        itemDisplayRectTransfom.position = shopItemDisplay.position;
-
-
+        itemDisplayRectTransfom.position = itemDisplayRectTransfom.position;
     }
 
     private void ItemDisplayHide()

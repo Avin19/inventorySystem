@@ -12,6 +12,7 @@ public class BuySellController : MonoBehaviour
     private ItemSO item;
     [SerializeField] private PlayerStatus playerStatus;
     [SerializeField] private PlayerInventorySO playerInventorySO;
+    [SerializeField] private ItemListSO shopList;
     private int quantity = 0;
     private void OnEnable()
     {
@@ -32,22 +33,31 @@ public class BuySellController : MonoBehaviour
 
     private void OnSubQuantityClicked()
     {
-        UpdateQuantity(quantity--);
+        quantityTxt.text = UpdateQuantity(--quantity);
     }
 
     private void OnAddQuantityClicked()
     {
-        UpdateQuantity(quantity++);
+        quantityTxt.text = UpdateQuantity(++quantity);
     }
 
     private void OnCancelBtnClicked()
     {
-        this.gameObject.SetActive(false);
+        ResetQuantity();
     }
 
     private void OnOkBtnClicked()
     {
         CheckingItemChangeItemQuanity(item, quantity);
+        Invoke(nameof(ResetQuantity), 1f);
+        ReduceTheAmountInShopList(item);
+
+
+    }
+
+    private void ReduceTheAmountInShopList(ItemSO item)
+    {
+        //Reduce the item of the list
 
     }
 
@@ -55,12 +65,10 @@ public class BuySellController : MonoBehaviour
     {
         this.item = item;
 
-
-
     }
     private string UpdateQuantity(int quantity)
     {
-        if (quantity > 0)
+        if (quantity >= 0)
         {
             titleTxt.text = "Buy";
         }
@@ -72,35 +80,48 @@ public class BuySellController : MonoBehaviour
     }
     private void CheckingItemChangeItemQuanity(ItemSO item, int quantity)
     {
-        foreach (ItemSO i in playerInventorySO.Inventory)
+        if (playerInventorySO.Inventory.Contains(item))
         {
-            if (i == item)
+            foreach (ItemSO i in playerInventorySO.Inventory)
             {
-                if (quantity > 0 || playerStatus.coin > i.buyingPrice)
+                if (i == item)
                 {
-                    i.quantity += quantity;
-                    playerStatus.coin -= i.buyingPrice;
-                    playerStatus.maxplayerWeight += i.weight;
-
-                }
-                else
-                {
-                    if (i.quantity > quantity)
+                    if (quantity > 0 || playerStatus.coin > i.buyingPrice)
                     {
-                        i.quantity -= quantity;
-                        playerStatus.coin += i.sellingPrice;
-                        playerStatus.maxplayerWeight -= i.weight;
+                        i.quantity += quantity;
+                        playerStatus.coin -= i.buyingPrice;
+                        playerStatus.playerItemWeight += i.weight;
+
                     }
                     else
                     {
-                        titleTxt.text = " You Dont Have that much quanity";
+                        if (i.quantity > quantity)
+                        {
+                            i.quantity += quantity;
+                            playerStatus.coin += i.sellingPrice;
+                            playerStatus.playerItemWeight -= i.weight;
+                        }
+                        else
+                        {
+                            titleTxt.text = " You Dont Have that much quanity";
+                        }
                     }
                 }
-            }
 
+            }
+        }
+        else
+        {
+            playerInventorySO.Inventory.Add(item);
         }
 
 
+
+    }
+    private void ResetQuantity()
+    {
+        this.gameObject.SetActive(false);
+        quantity = 0;
     }
 
 }
