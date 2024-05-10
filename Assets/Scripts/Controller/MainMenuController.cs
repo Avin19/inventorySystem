@@ -1,6 +1,3 @@
-
-using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +14,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private RectTransform buysellPanel;
     [SerializeField] private InfoBarController infoBarController;
     [SerializeField] private BuySellController buySellController;
+    [SerializeField] private RectTransform notificationDisplay;
     private int coin = 0;
 
 
@@ -25,11 +23,11 @@ public class MainMenuController : MonoBehaviour
     private void Awake()
     {
         transcationBtn.onClick.AddListener(OnBuyBtnClick);
-
         gatherBtn.onClick.AddListener(OnGatherBtnClick);
     }
     public void ItemDisplayLocation()
     {
+        infoBarController.UpdateCoinValue(coin);
         if (!playerItemDisplay.gameObject.activeSelf)
         {
             itemDisplayRectTransfom.position = playerItemDisplay.position;
@@ -40,18 +38,33 @@ public class MainMenuController : MonoBehaviour
 
     private void OnGatherBtnClick()
     {
-        ItemDisplayLocation();
-        BuySellPanelControl(false);
-        ItemDisplayHide();
+        CheckWeight();
+    }
 
+    private void CheckWeight()
+    {
+        if (playerStatus.playerItemWeight >= playerStatus.maxplayerWeight)
+        {
 
-        coin += Random.Range(0, 500);
-        infoBarController.UpdateCoinValue(coin);
-        playerStatus.coin = coin;
+            notificationDisplay.gameObject.SetActive(true);
+            Invoke(nameof(NotificationSetTrue), 1f);
+        }
+        else
+        {
+            ItemDisplayLocation();
+            BuySellPanelControl(false);
+            ItemDisplayHide();
+            coin += Random.Range(0, 500);
+            infoBarController.UpdateCoinValue(coin);
+            playerStatus.coin = coin;
+            PlayerMaterialGather();
 
-        // player material Gather 
-        PlayerMaterialGather();
+        }
+    }
 
+    private void NotificationSetTrue()
+    {
+        notificationDisplay.gameObject.SetActive(false);
     }
 
     private void PlayerMaterialGather()
@@ -66,8 +79,6 @@ public class MainMenuController : MonoBehaviour
             {
                 item = shopItemList.materialList[Random.Range(0, shopItemList.materialList.Count)];
                 AddDataToInventory(item);
-
-
             }
             if (itemlist == shopItemList.Types[1])
             {
@@ -94,6 +105,7 @@ public class MainMenuController : MonoBehaviour
 
     private void AddDataToInventory(ItemSO item)
     {
+        playerStatus.playerItemWeight += item.weight;
         if (playerInventorySO.Inventory.Contains(item))
         {
             playerInventorySO.Inventory[playerInventorySO.Inventory.IndexOf(item)].quantity += item.quantity;
@@ -101,9 +113,8 @@ public class MainMenuController : MonoBehaviour
         else
         {
             playerInventorySO.Inventory.Add(item);
+
         }
-
-
 
     }
 

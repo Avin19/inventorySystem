@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInterventoryController : MonoBehaviour
 {
@@ -22,7 +23,6 @@ public class PlayerInterventoryController : MonoBehaviour
     }
     private void ItemDisplay(ItemSO itemSO)
     {
-
         Item item = Instantiate(pfItem, gameObject.transform).GetComponent<Item>();
         item.SetSprite(itemSO.iconSprite);
         item.SetQuantityText(itemSO.quantity);

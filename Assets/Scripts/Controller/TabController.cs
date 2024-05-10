@@ -38,9 +38,6 @@ public class TabController : MonoBehaviour
             {
                 ItemDisplay(item);
 
-
-
-
             }
         }
         else

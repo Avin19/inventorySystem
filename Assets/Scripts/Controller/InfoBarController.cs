@@ -7,13 +7,15 @@ using UnityEngine.UI;
 
 public class InfoBarController : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI coinText;
+    [SerializeField] private TextMeshProUGUI coinText, playerweight, maxWeight;
     [SerializeField] private Button shopBtn, playerInventoryBtn;
     [SerializeField] private MainMenuController mainMenuPanel;
+    [SerializeField] private PlayerStatus playerStatus;
     private void Awake()
     {
         shopBtn.onClick.AddListener(OnShopClick);
         playerInventoryBtn.onClick.AddListener(OnPlayerInventorClick);
+        UpdateCoinValue(0);
     }
 
     private void OnShopClick()
@@ -29,5 +31,7 @@ public class InfoBarController : MonoBehaviour
     public void UpdateCoinValue(int coin)
     {
         coinText.text = coin.ToString();
+        playerweight.text = "Player Weight: " + playerStatus.playerItemWeight.ToString();
+        maxWeight.text = "Player Max Weight: " + playerStatus.maxplayerWeight.ToString();
     }
 }
