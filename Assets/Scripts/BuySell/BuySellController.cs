@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,6 +12,8 @@ public class BuySellController : MonoBehaviour
     [SerializeField] private PlayerStatus playerStatus;
     [SerializeField] private PlayerInventorySO playerInventorySO;
     [SerializeField] private ItemListSO shopList;
+
+    private List<ItemSO> materialList, weaponList, comsumableList, teasureList = new List<ItemSO>();
     [SerializeField] private RectTransform playerItemDisplay;
     private int quantity = 0;
     private void OnEnable()
@@ -21,8 +22,32 @@ public class BuySellController : MonoBehaviour
         cancelBtn.onClick.AddListener(OnCancelBtnClicked);
         addQuantity.onClick.AddListener(OnAddQuantityClicked);
         subQuantity.onClick.AddListener(OnSubQuantityClicked);
+
+        SetupList();
     }
 
+    private void SetupList()
+    {
+        foreach (ItemType itemType in shopList.Types)
+        {
+            if (itemType == ItemType.Material)
+            {
+                materialList = shopList.materialList;
+            }
+            else if (itemType == ItemType.Weapon)
+            {
+                weaponList = shopList.weaponList;
+            }
+            else if (itemType == ItemType.Consumable)
+            {
+                comsumableList = shopList.consumableList;
+            }
+            else if (itemType == ItemType.Treasure)
+            {
+                teasureList = shopList.treasureList;
+            }
+        }
+    }
 
     private void OnDisable()
     {
@@ -53,15 +78,53 @@ public class BuySellController : MonoBehaviour
         Invoke(nameof(ResetQuantity), 1f);
         ReduceTheAmountInShopList(item);
         playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().Display();
-
-
-
-
     }
 
     private void ReduceTheAmountInShopList(ItemSO item)
     {
-        //Reduce the item of the list
+        if (item.itemType == ItemType.Material)
+        {
+            foreach (var i in materialList)
+            {
+                if (i == item)
+                {
+                    i.quantity -= item.quantity;
+                }
+            }
+        }
+        else if (item.itemType == ItemType.Weapon)
+        {
+            foreach (var i in weaponList)
+            {
+                if (i == item)
+                {
+                    i.quantity -= item.quantity;
+                }
+            }
+        }
+        else if (item.itemType == ItemType.Consumable)
+        {
+            foreach (var i in comsumableList)
+            {
+                if (i == item)
+                {
+                    i.quantity -= item.quantity;
+                }
+            }
+
+        }
+        else if (item.itemType == ItemType.Treasure)
+        {
+            foreach (var i in teasureList)
+            {
+                if (i == item)
+                {
+                    i.quantity -= item.quantity;
+                }
+            }
+
+        }
+
 
     }
 
@@ -118,8 +181,6 @@ public class BuySellController : MonoBehaviour
         {
             playerInventorySO.Inventory.Add(item);
         }
-
-
 
     }
     private void ResetQuantity()

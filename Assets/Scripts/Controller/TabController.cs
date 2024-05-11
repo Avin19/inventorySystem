@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class TabController : MonoBehaviour
 {
     [SerializeField] private ItemListSO itemListSO;
-    [Header("Button")]
+
     [SerializeField] private Button materialBtn;
     [SerializeField] private Button weaponBtn;
     [SerializeField] private Button consumableBtn;
