@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerStatus
   m_EditorClassIdentifier: 
   playerItemWeight: 0
-  maxplayerWeight: 200
+  maxplayerWeight: 500
   coin: 0

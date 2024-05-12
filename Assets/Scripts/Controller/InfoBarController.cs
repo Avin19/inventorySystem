@@ -15,7 +15,7 @@ public class InfoBarController : MonoBehaviour
     {
         shopBtn.onClick.AddListener(OnShopClick);
         playerInventoryBtn.onClick.AddListener(OnPlayerInventorClick);
-        UpdateCoinValue(0);
+        UpdateCoinValue(playerStatus.coin);
     }
 
     private void OnShopClick()

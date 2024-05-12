@@ -22,7 +22,6 @@ public class BuySellController : MonoBehaviour
         cancelBtn.onClick.AddListener(OnCancelBtnClicked);
         addQuantity.onClick.AddListener(OnAddQuantityClicked);
         subQuantity.onClick.AddListener(OnSubQuantityClicked);
-
         SetupList();
     }
 
@@ -59,11 +58,13 @@ public class BuySellController : MonoBehaviour
 
     private void OnSubQuantityClicked()
     {
+        quantity = (int)Mathf.Clamp(quantity, 1, item.quantity);
         quantityTxt.text = UpdateQuantity(--quantity);
     }
 
     private void OnAddQuantityClicked()
     {
+        quantity = (int)Mathf.Clamp(quantity, 0, item.quantity - 1);
         quantityTxt.text = UpdateQuantity(++quantity);
     }
 
@@ -74,10 +75,75 @@ public class BuySellController : MonoBehaviour
 
     private void OnOkBtnClicked()
     {
-        CheckingItemChangeItemQuanity(item, quantity);
+
+        if (titleTxt.text == "Sell")
+        {
+            ReduceTheAmountONPlayerList(item);
+            AddTheAmountOnShopList(item);
+        }
+        else
+        {
+            if (item.buyingPrice > playerStatus.coin)
+            {
+                ReduceTheAmountInShopList(item);
+                CheckingItemChangeItemQuanity(item, quantity);
+            }
+        }
         Invoke(nameof(ResetQuantity), 1f);
-        ReduceTheAmountInShopList(item);
         playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().Display();
+    }
+
+    private void AddTheAmountOnShopList(ItemSO item)
+    {
+        if (item.itemType == ItemType.Material)
+        {
+            foreach (var i in materialList)
+            {
+                if (i == item)
+                {
+                    i.quantity += item.quantity;
+                }
+            }
+        }
+        else if (item.itemType == ItemType.Weapon)
+        {
+            foreach (var i in weaponList)
+            {
+                if (i == item)
+                {
+                    i.quantity += item.quantity;
+                }
+            }
+        }
+        else if (item.itemType == ItemType.Consumable)
+        {
+            foreach (var i in comsumableList)
+            {
+                if (i == item)
+                {
+                    i.quantity += item.quantity;
+                }
+            }
+
+        }
+        else if (item.itemType == ItemType.Treasure)
+        {
+            foreach (var i in teasureList)
+            {
+                if (i == item)
+                {
+                    i.quantity += item.quantity;
+                }
+            }
+
+        }
+
+    }
+
+    private void ReduceTheAmountONPlayerList(ItemSO item)
+    {
+        item.quantity -= quantity;
+        playerStatus.coin += item.quantity * item.sellingPrice;
     }
 
     private void ReduceTheAmountInShopList(ItemSO item)
@@ -128,21 +194,14 @@ public class BuySellController : MonoBehaviour
 
     }
 
-    public void SetItem(ItemSO item)
+    public void SetItem(ItemSO item, string typeofpruchase)
     {
         this.item = item;
+        titleTxt.text = typeofpruchase;
 
     }
     private string UpdateQuantity(int quantity)
     {
-        if (quantity >= 0)
-        {
-            titleTxt.text = "Buy";
-        }
-        else
-        {
-            titleTxt.text = "Sell";
-        }
         return quantity.ToString();
     }
     private void CheckingItemChangeItemQuanity(ItemSO item, int quantity)
@@ -157,22 +216,11 @@ public class BuySellController : MonoBehaviour
                     {
                         i.quantity += quantity;
                         playerStatus.coin -= i.buyingPrice;
-                        playerStatus.playerItemWeight += i.weight;
+                        playerStatus.playerItemWeight += i.quantity * i.weight;
 
                     }
-                    else
-                    {
-                        if (i.quantity > quantity)
-                        {
-                            i.quantity += quantity;
-                            playerStatus.coin += i.sellingPrice;
-                            playerStatus.playerItemWeight -= i.weight;
-                        }
-                        else
-                        {
-                            titleTxt.text = " You Dont Have that much quanity";
-                        }
-                    }
+
+
                 }
 
             }

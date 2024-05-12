@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,14 +17,19 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private BuySellController buySellController;
     [SerializeField] private RectTransform notificationDisplay;
     private int coin = 0;
+    private TextMeshProUGUI transcationBtnText;
 
 
-
-
-    private void Awake()
+    private void OnEnable()
     {
-        transcationBtn.onClick.AddListener(OnBuyBtnClick);
+        transcationBtn.onClick.AddListener(OnTranscationBtnClick);
         gatherBtn.onClick.AddListener(OnGatherBtnClick);
+        transcationBtnText = transcationBtn.GetComponentInChildren<TextMeshProUGUI>();
+    }
+    private void OnDisable()
+    {
+        transcationBtn.onClick.RemoveListener(OnTranscationBtnClick);
+        gatherBtn.onClick.RemoveListener(OnGatherBtnClick);
     }
     public void ItemDisplayLocation()
     {
@@ -31,9 +37,12 @@ public class MainMenuController : MonoBehaviour
         if (!playerItemDisplay.gameObject.activeSelf)
         {
             itemDisplayRectTransfom.position = playerItemDisplay.position;
+            transcationBtnText.text = "Buy";
+
             return;
         }
         itemDisplayRectTransfom.position = shopItemDisplay.position;
+        transcationBtnText.text = "Sell";
     }
 
     private void OnGatherBtnClick()
@@ -55,7 +64,7 @@ public class MainMenuController : MonoBehaviour
             BuySellPanelControl(false);
             ItemDisplayHide();
             coin += Random.Range(0, 500);
-            infoBarController.UpdateCoinValue(coin);
+            InfoBarUpdate();
             playerStatus.coin = coin;
             PlayerMaterialGather();
 
@@ -117,15 +126,14 @@ public class MainMenuController : MonoBehaviour
         }
 
     }
-
-
-
-    private void OnBuyBtnClick()
+    private void OnTranscationBtnClick()
     {
         ItemDisplayLocation();
         BuySellPanelControl(true);
-        buySellController.SetItem(itemData);
-        itemDisplayRectTransfom.position = itemDisplayRectTransfom.position;
+        buySellController.SetItem(itemData, transcationBtnText.text);
+        InfoBarUpdate();
+
+
     }
 
     private void ItemDisplayHide()
@@ -136,21 +144,30 @@ public class MainMenuController : MonoBehaviour
     {
         this.itemData = itemData;
     }
-    private void BuySellPanelControl(bool check = true)
+    private void BuySellPanelControl(bool check)
     {
+
         buysellPanel.gameObject.SetActive(check);
+    }
+    private void InfoBarUpdate()
+    {
+        infoBarController.UpdateCoinValue(coin);
     }
 
     public void ShopOpen()
     {
         shopItemDisplay.gameObject.SetActive(true);
         playerItemDisplay.gameObject.SetActive(false);
+        playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().Display();
         ItemDisplayLocation();
+        InfoBarUpdate();
     }
     public void PlayerOpen()
     {
         shopItemDisplay.gameObject.SetActive(false);
         playerItemDisplay.gameObject.SetActive(true);
+        playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().Display();
         ItemDisplayLocation();
+        InfoBarUpdate();
     }
 }
