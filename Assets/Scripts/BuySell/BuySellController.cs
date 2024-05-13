@@ -50,6 +50,7 @@ public class BuySellController : MonoBehaviour
         ResetQuantity();
     }
 
+
     private void OnOkBtnClicked()
     {
         //Selling 
@@ -77,6 +78,8 @@ public class BuySellController : MonoBehaviour
         Invoke(nameof(ResetQuantity), 1f);
         playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().Display();
         infoBarController.UpdateCoinValue(playerStatus.coin);
+        ResetQuantity();
+
     }
 
     private void AddTheAmountOnShopList(ItemSO item)
@@ -146,7 +149,7 @@ public class BuySellController : MonoBehaviour
                 if (i.name == item.name)
                 {
                     i.quantity -= quantity;
-                    playerStatus.coin -= quantity * item.sellingPrice;
+                    playerStatus.coin -= quantity * item.buyingPrice;
                 }
             }
 
@@ -158,7 +161,7 @@ public class BuySellController : MonoBehaviour
                 if (i.name == item.name)
                 {
                     i.quantity -= quantity;
-                    playerStatus.coin -= quantity * item.sellingPrice;
+                    playerStatus.coin -= quantity * item.buyingPrice;
                 }
             }
         }
@@ -169,7 +172,7 @@ public class BuySellController : MonoBehaviour
                 if (i.name == item.name)
                 {
                     i.quantity -= quantity;
-                    playerStatus.coin -= quantity * item.sellingPrice;
+                    playerStatus.coin -= quantity * item.buyingPrice;
                 }
             }
 
@@ -181,7 +184,7 @@ public class BuySellController : MonoBehaviour
                 if (i.name == item.name)
                 {
                     i.quantity -= quantity;
-                    playerStatus.coin -= quantity * item.sellingPrice;
+                    playerStatus.coin -= quantity * item.buyingPrice;
                 }
             }
 
@@ -205,7 +208,7 @@ public class BuySellController : MonoBehaviour
     private void PlayerItemAdd(ItemSO item, int _quantity)
     {
 
-        if (playerStatus.coin > item.buyingPrice)
+        if (playerStatus.coin > item.sellingPrice * _quantity)
         {
             foreach (ItemSO i in playerInventorySO.Inventory)
             {
@@ -213,7 +216,7 @@ public class BuySellController : MonoBehaviour
                 {
 
                     item.quantity += _quantity;
-                    playerStatus.coin -= i.buyingPrice;
+                    playerStatus.coin -= _quantity * i.sellingPrice;
                     playerStatus.playerItemWeight += i.quantity * i.weight;
                     RemoveZeroQuantity();
                     return;
@@ -225,7 +228,7 @@ public class BuySellController : MonoBehaviour
                 if (i.name == item.name)
                 {
                     item.quantity += _quantity;
-                    playerStatus.coin -= i.buyingPrice;
+                    playerStatus.coin -= _quantity * i.sellingPrice;
                     playerStatus.playerItemWeight += i.quantity * i.weight;
 
                 }

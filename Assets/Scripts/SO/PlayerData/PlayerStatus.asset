@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bedc5b0994cb1c94b8e3dc31653aa02e, type: 3}
   m_Name: PlayerStatus
   m_EditorClassIdentifier: 
-  playerItemWeight: 3350
+  playerItemWeight: 75
   maxplayerWeight: 500
-  coin: 399
+  coin: 9765
