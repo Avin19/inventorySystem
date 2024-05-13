@@ -129,5 +129,12 @@ public class TabController : MonoBehaviour
             Destroy(itemHolder.GetChild(i).gameObject);
         }
     }
+    public void UpdateTheData()
+    {
+        OnMaterialClick();
+        OntreasureClick();
+        OnconsumableClick();
+        OnWeaponClick();
+    }
 
 }

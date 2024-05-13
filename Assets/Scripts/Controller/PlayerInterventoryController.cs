@@ -23,9 +23,12 @@ public class PlayerInterventoryController : MonoBehaviour
     }
     private void ItemDisplay(ItemSO itemSO)
     {
-        Item item = Instantiate(pfItem, gameObject.transform).GetComponent<Item>();
-        item.SetSprite(itemSO.iconSprite);
-        item.SetQuantityText(itemSO.quantity);
-        item.ItemDetails(itemSO);
+        if (itemSO.quantity > 0)
+        {
+            Item item = Instantiate(pfItem, gameObject.transform).GetComponent<Item>();
+            item.SetSprite(itemSO.iconSprite);
+            item.SetQuantityText(itemSO.quantity);
+            item.ItemDetails(itemSO);
+        }
     }
 }

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 701e140cb5229dc40a1a4c48cdc381e3, type: 3}
-  m_Name: Ruby
+  m_Name: Health Postion
   m_EditorClassIdentifier: 
-  itemType: 3
-  iconSprite: {fileID: -235587302, guid: ab82ac7a74d322f48b4f8609948110dc, type: 3}
-  itemDescription: Ruby
-  buyingPrice: 100
-  sellingPrice: 40
+  itemType: 2
+  iconSprite: {fileID: -1261387681, guid: ab82ac7a74d322f48b4f8609948110dc, type: 3}
+  itemDescription: Health Postion
+  buyingPrice: 10
+  sellingPrice: 5
   weight: 1
-  rarity: 2
-  quantity: 15
+  rarity: 0
+  quantity: 40

@@ -16,7 +16,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private InfoBarController infoBarController;
     [SerializeField] private BuySellController buySellController;
     [SerializeField] private RectTransform notificationDisplay;
-    private int coin = 0;
+
     private TextMeshProUGUI transcationBtnText;
 
 
@@ -25,6 +25,7 @@ public class MainMenuController : MonoBehaviour
         transcationBtn.onClick.AddListener(OnTranscationBtnClick);
         gatherBtn.onClick.AddListener(OnGatherBtnClick);
         transcationBtnText = transcationBtn.GetComponentInChildren<TextMeshProUGUI>();
+
     }
     private void OnDisable()
     {
@@ -33,12 +34,11 @@ public class MainMenuController : MonoBehaviour
     }
     public void ItemDisplayLocation()
     {
-        infoBarController.UpdateCoinValue(coin);
+        InfoBarUpdate();
         if (!playerItemDisplay.gameObject.activeSelf)
         {
             itemDisplayRectTransfom.position = playerItemDisplay.position;
             transcationBtnText.text = "Buy";
-
             return;
         }
         itemDisplayRectTransfom.position = shopItemDisplay.position;
@@ -52,9 +52,9 @@ public class MainMenuController : MonoBehaviour
 
     private void CheckWeight()
     {
+        InfoBarUpdate();
         if (playerStatus.playerItemWeight >= playerStatus.maxplayerWeight)
         {
-
             notificationDisplay.gameObject.SetActive(true);
             Invoke(nameof(NotificationSetTrue), 1f);
         }
@@ -63,9 +63,7 @@ public class MainMenuController : MonoBehaviour
             ItemDisplayLocation();
             BuySellPanelControl(false);
             ItemDisplayHide();
-            coin += Random.Range(0, 500);
-            InfoBarUpdate();
-            playerStatus.coin = coin;
+            playerStatus.coin += Random.Range(0, 500);
             PlayerMaterialGather();
 
         }
@@ -114,7 +112,7 @@ public class MainMenuController : MonoBehaviour
 
     private void AddDataToInventory(ItemSO item)
     {
-        playerStatus.playerItemWeight += item.weight;
+        playerStatus.playerItemWeight += item.weight * item.quantity;
         if (playerInventorySO.Inventory.Contains(item))
         {
             playerInventorySO.Inventory[playerInventorySO.Inventory.IndexOf(item)].quantity += item.quantity;
@@ -131,7 +129,6 @@ public class MainMenuController : MonoBehaviour
         ItemDisplayLocation();
         BuySellPanelControl(true);
         buySellController.SetItem(itemData, transcationBtnText.text);
-        InfoBarUpdate();
 
 
     }
@@ -151,7 +148,7 @@ public class MainMenuController : MonoBehaviour
     }
     private void InfoBarUpdate()
     {
-        infoBarController.UpdateCoinValue(coin);
+        infoBarController.UpdateCoinValue(playerStatus.coin);
     }
 
     public void ShopOpen()
@@ -160,7 +157,7 @@ public class MainMenuController : MonoBehaviour
         playerItemDisplay.gameObject.SetActive(false);
         playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().Display();
         ItemDisplayLocation();
-        InfoBarUpdate();
+
     }
     public void PlayerOpen()
     {
@@ -168,6 +165,6 @@ public class MainMenuController : MonoBehaviour
         playerItemDisplay.gameObject.SetActive(true);
         playerItemDisplay.gameObject.GetComponentInChildren<PlayerInterventoryController>().Display();
         ItemDisplayLocation();
-        InfoBarUpdate();
+
     }
 }
